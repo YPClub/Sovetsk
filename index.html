@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История Советского проспекта Череповца</title>
+    <style>
+        /* ===== БАЗОВЫЕ СТИЛИ ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ===== НАВИГАЦИЯ ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* ===== ГЛАВНАЯ СЕКЦИЯ ===== */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,101.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 40px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* ===== ОБЩИЕ СТИЛИ СЕКЦИЙ ===== */
+        .section-wrapper {
+            width: 100%;
+            padding: 80px 40px;
+        }
+
+        .section-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #2c3e50;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        /* ===== ИСТОРИЯ (ТАЙМЛАЙН) ===== */
+        #history {
+            background: #f8f9fa;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #667eea;
+        }
+
+        .timeline-year {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        /* ===== ДОСТОПРИМЕЧАТЕЛЬНОСТИ ===== */
+        .landmarks-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .landmarks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .landmark-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .landmark-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .landmark-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.25);
+        }
+
+        /* Контейнер для изображения */
+        .card-image {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.1) 100%);
+        }
+
+        /* Плейсхолдер для изображения (пока нет реального фото) */
+        .card-placeholder {
+            font-size: 80px;
+            opacity: 0.95;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.4s;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Если есть реальное изображение */
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 0.4s;
+        }
+
+        .landmark-card:hover .card-placeholder,
+        .landmark-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            margin: 0 0 8px 0;
+            color: #2c3e50;
+            font-size: 1.25em;
+        }
+
+        .card-year {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 0.95em;
+            margin: 0 0 10px 0;
+        }
+
+        .card-desc {
+            color: #7f8c8d;
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Карта на всю ширину */
+        .map-full-section {
+            background: #f8f9fa;
+        }
+
+        .map-full-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .map-full-header h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .map-full-header p {
+            color: #7f8c8d;
+            font-size: 1.05em;
+        }
+
+        .map-full-wrapper {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            background: white;
+        }
+
+        .map-full-wrapper iframe {
+            display: block;
+            border-radius: 0;
+        }
+
+        /* ===== ТЕСТ ===== */
+        #quiz {
+            background: #f8f9fa;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #ecf0f1;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .quiz-level {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .question {
+            display: none;
+        }
+
+        .question.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .question h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1em;
+        }
+
+        .option:hover {
+            background: #e8f4f8;
+            border-color: #3498db;
+        }
+
+        .option.selected {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .option.correct {
+            background: #2ecc71;
+            color: white;
+            border-color: #2ecc71;
+        }
+
+        .option.incorrect {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+
+        .explanation {
+            display: none;
+            padding: 15px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .quiz-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .btn-quiz {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-next {
+            background: #667eea;
+            color: white;
+            margin-left: auto;
+        }
+
+        .btn-next:hover {
+            background: #764ba2;
+        }
+
+        .btn-next:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .result {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .result.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .result-score {
+            font-size: 3em;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .result-level {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .result-description {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        /* ===== МОДАЛЬНОЕ ОКНО ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #000;
+        }
+
+        .modal-content h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .modal-year {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .modal-content h4 {
+            color: #34495e;
+            margin: 20px 0 10px;
+        }
+
+        .modal-content p,
+        .modal-content ul {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-content ul {
+            padding-left: 20px;
+        }
+
+        /* ===== АДАПТИВНОСТЬ ===== */
+        @media (max-width: 1024px) {
+            .landmarks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+            }
+
+            .nav-container,
+            .section-wrapper {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9em;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .hero-content {
+                padding: 0 20px;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .quiz-container {
+                padding: 20px;
+            }
+
+            .landmarks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-wrapper {
+                padding: 60px 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .card-image {
+                height: 180px;
+            }
+            
+            .card-placeholder {
+                font-size: 60px;
+            }
+
+            .section-wrapper {
+                padding: 40px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">🏛️ Советский проспект</a>
+            <div class="nav-links">
+                <a href="#home" class="active">Главная</a>
+                <a href="#history">История</a>
+                <a href="#landmarks">Достопримечательности</a>
+                <a href="#quiz">Тест</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главная секция -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>История Советского проспекта</h1>
+            <p>От купеческого Николаевского проспекта до главной улицы современного Череповца</p>
+            <a href="#history" class="btn-primary">Узнать историю</a>
+        </div>
+    </section>
+
+    <!-- История -->
+    <section id="history" class="section-wrapper">
+        <div class="section-container">
+            <h2 class="section-title">Хронология Советского проспекта</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">1362-1770-е</span>
+                        <h3>Монастырский период</h3>
+                        <p>Основание Воскресенского монастыря преподобными Афанасием и Феодосием. Монастырь дал название будущему проспекту — Воскресенский тракт. Тропинка-просека соединяла монастырь с другими поселениями.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">1780-1917</span>
+                        <h3>Купеческий период</h3>
+                        <p>После образования города тракт становится центральной улицей. Активное строительство купеческих особняков и торговых домов. В доме купца Красильникова останавливался император Александр I. Проспект становится торгово-экономическим и духовным центром города.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">1917-1991</span>
+                        <h3>Советский период</h3>
+                        <p>1919 — переименование в Советский проспект. Национализация зданий. В гостинице "Москва" жил нарком просвещения А.В. Луначарский. Во время войны здания используются под госпитали. В 1980-е — упадок проспекта и попытки сноса исторических домов.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">1991-наши дни</span>
+                        <h3>Современность</h3>
+                        <p>Восстановление и реконструкция зданий. Открытие художественного музея. Создание Городского филармонического собрания. Переименование Торговой площади в площадь Милютина. Масштабная реконструкция 2023 года: новые велодорожки, озеленение.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Достопримечательности -->
+    <section id="landmarks" class="section-wrapper">
+        <div class="section-container">
+            <h2 class="section-title">Достопримечательности</h2>
+            <p class="landmarks-intro">Нажмите на любую карточку, чтобы узнать подробную историю здания. Все объекты отмечены на интерактивной карте ниже.</p>
+            
+            <div class="landmarks-grid">
+                <!-- Карточка 1 -->
+                <div class="landmark-card" data-id="1" onclick="openModal(1)">
+                    <!-- Чтобы добавить своё изображение, замените градиент на: style="background-image: url('images/sobor.jpg')" -->
+                    <div class="card-image" style="background-image: url('images/sobor.jpg')">
+                    </div>
+                    <div class="card-content">
+                        <h3>Воскресенский собор</h3>
+                        <p class="card-year">1732-1756</p>
+                        <p class="card-desc">Самое старое каменное здание Череповца. Построен на месте Воскресенского монастыря.</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="landmark-card" data-id="2" onclick="openModal(2)">
+                    <div class="card-image" style="background-image: url('images/BuildGosBank.jpg')">
+                    </div>
+                    <div class="card-content">
+                        <h3>Здание Госбанка (дом №12)</h3>
+                        <p class="card-year">1870</p>
+                        <p class="card-desc">Принадлежал купеческой вдове Мостофиной. Здесь останавливался император Александр I.</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="landmark-card" data-id="3" onclick="openModal(3)">
+                    <div class="card-image" style="background-image: url('images/Moskow.png')">
+                    </div>
+                    <div class="card-content">
+                        <h3>Гостиница "Москва" (дом №15)</h3>
+                        <p class="card-year">1850</p>
+                        <p class="card-desc">Одна из лучших гостиниц города. Здесь жил нарком просвещения А.В. Луначарский.</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 4 -->
+                <div class="landmark-card" data-id="4" onclick="openModal(4)">
+                    <div class="card-image" style="background-image: url('images/hOUSE29.png')">
+                    </div>
+                    <div class="card-content">
+                        <h3>Общественное собрание (дом №29)</h3>
+                        <p class="card-year">1847</p>
+                        <p class="card-desc">Городской клуб, где проводились балы и литературные вечера. Сейчас почтовое отделение.</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 5 -->
+                <div class="landmark-card" data-id="5" onclick="openModal(5)">
+                    <div class="card-image" style="background-image: url('images/PAINT.png')">
+                    </div>
+                    <div class="card-content">
+                        <h3>Художественный музей (дом №30а)</h3>
+                        <p class="card-year">1906</p>
+                        <p class="card-desc">Построен в "краснокирпичном" стиле архитектором Петром Подшиваловым.</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 6 -->
+                <div class="landmark-card" data-id="6" onclick="openModal(6)">
+                    <div class="card-image" style="background-image: url('images/x.png')">
+                    </div>
+                    <div class="card-content">
+                        <h3>Часовня Филиппа Ирапского (дом №31/35)</h3>
+                        <p class="card-year">1874</p>
+                        <p class="card-desc">Построена на средства Свято-Троицкой пустыни. Здесь снимал квартиру В.В. Верещагин-старший.</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 8 -->
+                <div class="landmark-card" data-id="8" onclick="openModal(8)">
+                    <div class="card-image" style="background-image: url('images/teatr.webp')">
+                    </div>
+                    <div class="card-content">
+                        <h3>Камерный театр (дом №35б)</h3>
+                        <p class="card-year">1915</p>
+                        <p class="card-desc">Построен на средства известных купцов. Во время войны — госпиталь.</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 9 -->
+                <div class="landmark-card" data-id="9" onclick="openModal(9)">
+                    <div class="card-image" style="background-image: url('images/letual.png')">
+                    </div>
+                    <div class="card-content">
+                        <h3>"Небоскреб" (дом №54)</h3>
+                        <p class="card-year">1860 / 1920-е</p>
+                        <p class="card-desc">Первый "небоскреб" Череповца. Трехэтажная пристройка 1920-х годов.</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 10 -->
+                <div class="landmark-card" data-id="10" onclick="openModal(10)">
+                    <div class="card-image" style="background-image: url('images/i.webp')">
+                    </div>
+                    <div class="card-content">
+                        <h3>Площадь Милютина</h3>
+                        <p class="card-year">2004</p>
+                        <p class="card-desc">Бывшая Торговая площадь. Названа в честь городского головы И.А. Милютина.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Карта отдельной секцией на всю ширину -->
+    <section class="map-full-section section-wrapper">
+        <div class="section-container">
+            <div class="map-full-header">
+                <h2>🗺️ Интерактивная карта проспекта</h2>
+                <p>Все достопримечательности Советского проспекта на одной карте</p>
+            </div>
+            <div class="map-full-wrapper">
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad8d13e7fc74651cbc48137605a4b380ac6fbe27e4e5c6246705bbb01c8b056ed&amp;source=constructor" 
+                        width="100%" 
+                        height="600" 
+                        frameborder="0"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Тест -->
+    <section id="quiz" class="section-wrapper">
+        <div class="section-container">
+            <h2 class="section-title">Проверь свои знания</h2>
+            <div class="quiz-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill">0%</div>
+                </div>
+                <div class="quiz-level" id="quizLevel">Уровень: Случайный прохожий</div>
+
+                <div class="question active" data-question="1">
+                    <h3>Вопрос 1 из 10: Как назывался Советский проспект до 1919 года?</h3>
+                    <div class="options">
+                        <div class="option" data-correct="false">Александровский</div>
+                        <div class="option" data-correct="false">Николаевский</div>
+                        <div class="option" data-correct="true">Воскресенский</div>
+                        <div class="option" data-correct="false">Благовещенский</div>
+                    </div>
+                    <div class="explanation">Проспект получил название в честь Воскресенского монастыря, основанного в 1362 году.</div>
+                    <div class="quiz-buttons">
+                        <button class="btn-quiz btn-next" disabled>Далее →</button>
+                    </div>
+                </div>
+
+                <div class="question" data-question="2">
+                    <h3>Вопрос 2 из 10: В каком году был построен Воскресенский собор?</h3>
+                    <div class="options">
+                        <div class="option" data-correct="true">1732-1756</div>
+                        <div class="option" data-correct="false">1780-1800</div>
+                        <div class="option" data-correct="false">1810-1820</div>
+                        <div class="option" data-correct="false">1850-1860</div>
+                    </div>
+                    <div class="explanation">Строительство каменного собора началось в 1732 году и завершилось в 1756 году.</div>
+                    <div class="quiz-buttons">
+                        <button class="btn-quiz btn-next" disabled>Далее →</button>
+                    </div>
+                </div>
+
+                <div class="question" data-question="3">
+                    <h3>Вопрос 3 из 10: Какой император останавливался в доме купца Красильникова в 1824 году?</h3>
+                    <div class="options">
+                        <div class="option" data-correct="false">Николай I</div>
+                        <div class="option" data-correct="true">Александр I</div>
+                        <div class="option" data-correct="false">Павел I</div>
+                        <div class="option" data-correct="false">Александр II</div>
+                    </div>
+                    <div class="explanation">Император Александр I останавливался на ночлег в доме купца Красильникова (сейчас №12).</div>
+                    <div class="quiz-buttons">
+                        <button class="btn-quiz btn-next" disabled>Далее →</button>
+                    </div>
+                </div>
+
+                <div class="question" data-question="4">
+                    <h3>Вопрос 4 из 10: Кто жил в гостинице "Москва" в 1926 году?</h3>
+                    <div class="options">
+                        <div class="option" data-correct="false">В.И. Ленин</div>
+                        <div class="option" data-correct="false">И.В. Сталин</div>
+                        <div class="option" data-correct="true">А.В. Луначарский</div>
+                        <div class="option" data-correct="false">Л.Д. Троцкий</div>
+                    </div>
+                    <div class="explanation">Первый народный комиссар просвещения А.В. Луначарский жил здесь в 1926 году.</div>
+                    <div class="quiz-buttons">
+                        <button class="btn-quiz btn-next" disabled>Далее →</button>
+                    </div>
+                </div>
+
+                <div class="question" data-question="5">
+                    <h3>Вопрос 5 из 10: Какое здание называли первым "небоскребом" Череповца?</h3>
+                    <div class="options">
+                        <div class="option" data-correct="false">Дом №12</div>
+                        <div class="option" data-correct="false">Дом №29</div>
+                        <div class="option" data-correct="false">Дом №30а</div>
+                        <div class="option" data-correct="true">Дом №54</div>
+                    </div>
+                    <div class="explanation">Трехэтажная пристройка к дому №54, построенная в 1920-е годы, была самым высоким зданием в городе.</div>
+                    <div class="quiz-buttons">
+                        <button class="btn-quiz btn-next" disabled>Далее →</button>
+                    </div>
+                </div>
+
+                <div class="question" data-question="6">
+                    <h3>Вопрос 6 из 10: В каком году проспект был переименован в Советский?</h3>
+                    <div class="options">
+                        <div class="option" data-correct="false">1917</div>
+                        <div class="option" data-correct="false">1918</div>
+                        <div class="option" data-correct="true">1919</div>
+                        <div class="option" data-correct="false">1920</div>
+                    </div>
+                    <div class="explanation">Проспект был переименован в 1919 году после утверждения Советской власти.</div>
+                    <div class="quiz-buttons">
+                        <button class="btn-quiz btn-next" disabled>Далее →</button>
+                    </div>
+                </div>
+
+                <div class="question" data-question="7">
+                    <h3>Вопрос 7 из 10: Какой театр размещается в здании №35б с 1990 года?</h3>
+                    <div class="options">
+                        <div class="option" data-correct="false">Драматический театр</div>
+                        <div class="option" data-correct="false">Кукольный театр</div>
+                        <div class="option" data-correct="true">Камерный театр</div>
+                        <div class="option" data-correct="false">Театр юного зрителя</div>
+                    </div>
+                    <div class="explanation">В 1990 году здание бывшего Дворца культуры металлургов было передано Камерному театру.</div>
+                    <div class="quiz-buttons">
+                        <button class="btn-quiz btn-next" disabled>Далее →</button>
+                    </div>
+                </div>
+
+                <div class="question" data-question="8">
+                    <h3>Вопрос 8 из 10: Кто заложил фундамент здания №35а в 1912 году?</h3>
+                    <div class="options">
+                        <div class="option" data-correct="false">Иван Андреевич Милютин</div>
+                        <div class="option" data-correct="true">Андрей Иванович Милютин</div>
+                        <div class="option" data-correct="false">Петр Подшивалов</div>
+                        <div class="option" data-correct="false">Василий Верещагин</div>
+                    </div>
+                    <div class="explanation">Фундамент заложил сын И.А. Милютина — Андрей Иванович, избранный городским головой в 1912 году.</div>
+                    <div class="quiz-buttons">
+                        <button class="btn-quiz btn-next" disabled>Далее →</button>
+                    </div>
+                </div>
+
+                <div class="question" data-question="9">
+                    <h3>Вопрос 9 из 10: Какой художник снимал квартиру в здании часовни Филиппа Ирапского?</h3>
+                    <div class="options">
+                        <div class="option" data-correct="false">И.Е. Репин</div>
+                        <div class="option" data-correct="false">В.М. Васнецов</div>
+                        <div class="option" data-correct="true">В.В. Верещагин-старший</div>
+                        <div class="option" data-correct="false">К.А. Коровин</div>
+                    </div>
+                    <div class="explanation">В здании снимал квартиру В.В. Верещагин-старший (отец известного художника-баталиста).</div>
+                    <div class="quiz-buttons">
+                        <button class="btn-quiz btn-next" disabled>Далее →</button>
+                    </div>
+                </div>
+
+                <div class="question" data-question="10">
+                    <h3>Вопрос 10 из 10: Сколько деревьев было высажено при реконструкции проспекта в 2023 году?</h3>
+                    <div class="options">
+                        <div class="option" data-correct="false">100</div>
+                        <div class="option" data-correct="false">150</div>
+                        <div class="option" data-correct="true">218</div>
+                        <div class="option" data-correct="false">300</div>
+                    </div>
+                    <div class="explanation">При масштабной реконструкции 2023 года было высажено 218 взрослых деревьев, более 5000 кустарников и 21000 многолетних растений.</div>
+                    <div class="quiz-buttons">
+                        <button class="btn-quiz btn-next" disabled>Завершить тест</button>
+                    </div>
+                </div>
+
+                <div class="result" id="quizResult">
+                    <div class="result-score" id="resultScore">0/10</div>
+                    <div class="result-level" id="resultLevel">Случайный прохожий</div>
+                    <div class="result-description" id="resultDescription">Вы только начинаете знакомство с историей проспекта!</div>
+                    <button class="btn-primary" onclick="restartQuiz()">Пройти заново</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Данные о достопримечательностях
+        const landmarksData = {
+            1: {
+                title: "Воскресенский собор",
+                year: "1732-1756",
+                fullDescription: `
+                    <p><strong>Воскресенский собор</strong> — самое старое каменное здание Череповца и духовный центр города.</p>
+                    <h4>История:</h4>
+                    <p>Построен на месте деревянной церкви Воскресенского монастыря, основанного в 1362 году преподобными Афанасием и Феодосием, учениками Сергия Радонежского.</p>
+                    <h4>Архитектура:</h4>
+                    <p>Стиль: барокко с элементами классицизма. Пятиглавый храм с колокольней.</p>
+                    <h4>Интересные факты:</h4>
+                    <ul>
+                        <li>Единственный храм, действовавший в городе в советские годы</li>
+                        <li>Отсюда начинался город Череповец</li>
+                        <li>Собор почти не закрывался в советское время</li>
+                    </ul>
+                `
+            },
+            2: {
+                title: "Здание Государственного банка (дом №12)",
+                year: "1870",
+                fullDescription: `
+                    <p><strong>Дом №12</strong> — классический купеческий дом XIX века.</p>
+                    <h4>История:</h4>
+                    <p>Принадлежал купеческой вдове Александре Петровне Мостофиной. Сдан под отделение Государственного банка.</p>
+                    <h4>Императорский визит:</h4>
+                    <p>В октябре 1824 года здесь останавливался император <strong>Александр I</strong>.</p>
+                    <h4>Советский период:</h4>
+                    <p>После 1917 года национализирован. В 1925-1926 передан в жилой фонд, но в 1927 денационализирован и возвращен Госбанку.</p>
+                    <h4>Современность:</h4>
+                    <p>С 1994 года — расчетно-кассовый центр Банка России.</p>
+                `
+            },
+            3: {
+                title: "Гостиница 'Москва' (дом №15)",
+                year: "1850",
+                fullDescription: `
+                    <p><strong>Гостиница 'Москва'</strong> — одна из лучших гостиниц города дореволюционного периода.</p>
+                    <h4>Владельцы:</h4>
+                    <p>Входила в обширные владения купчихи <strong>Анны Ивановны Волковой</strong>. Волковы владели несколькими зданиями на проспекте (№15, 25, 51, 52).</p>
+                    <h4>Известные гости:</h4>
+                    <ul>
+                        <li>1918-1920: уполномоченный ВЦИК Н.И. Подвойский</li>
+                        <li>1926: нарком просвещения <strong>А.В. Луначарский</strong></li>
+                    </ul>
+                    <h4>Советский период:</h4>
+                    <p>В 1962 году переименована в 'Коммунальную'.</p>
+                    <h4>Сейчас:</h4>
+                    <p>Департамент жилищно-коммунального хозяйства.</p>
+                `
+            },
+            4: {
+                title: "Общественное собрание (дом №29)",
+                year: "1847",
+                fullDescription: `
+                    <p><strong>Дом №29</strong> — культурный центр дореволюционного Череповца.</p>
+                    <h4>Владелец:</h4>
+                    <p>Принадлежал купцу <strong>Николаю Степановичу Заводчикову</strong>.</p>
+                    <h4>Общественное собрание:</h4>
+                    <p>Размещался городской клуб, где проводились балы, маскарады, музыкальные и литературные вечера.</p>
+                    <h4>После революции:</h4>
+                    <p>С 1918 года — Народный дом имени Октябрьской революции. Первая заведующая — А.П. Кравченко, организатор Советской власти в Череповце.</p>
+                    <h4>С 1928 года:</h4>
+                    <p>Почтово-телеграфная контора.</p>
+                `
+            },
+            5: {
+                title: "Торговые ряды / Художественный музей (дом №30а)",
+                year: "1906",
+                fullDescription: `
+                    <p><strong>Дом №30а</strong> — образец архитектуры начала XX века.</p>
+                    <h4>Архитектор:</h4>
+                    <p>Построен <strong>Петром Подшиваловым</strong> в 'краснокирпичном' стиле.</p>
+                    <h4>Первоначальное назначение:</h4>
+                    <ul>
+                        <li><strong>Первый этаж:</strong> торговые ряды (магазины готового платья, кожи и обуви)</li>
+                        <li><strong>Второй этаж:</strong> организации и учреждения, государственная сберегательная касса</li>
+                    </ul>
+                    <h4>После революции:</h4>
+                    <p>Размещались горсовет, райисполком, различные отделы.</p>
+                    <h4>С 1989 года:</h4>
+                    <p>Исторический и художественный отделы музея. Сейчас — художественный музей с залом древнерусского искусства XVIII-XIX вв.</p>
+                `
+            },
+            6: {
+                title: "Часовня Филиппа Ирапского (дом №31/35)",
+                year: "1874",
+                fullDescription: `
+                    <p><strong>Часовня Филиппа Ирапского</strong> на перекрестке с улицей Ленина.</p>
+                    <h4>Строительство:</h4>
+                    <p>Построена на средства Свято-Троицкой Филиппо-Ирапской пустыни.</p>
+                    <h4>Известные жильцы:</h4>
+                    <p>В здании снимал квартиру <strong>В.В. Верещагин-старший</strong> (отец известного художника-баталиста).</p>
+                    <h4>История использования:</h4>
+                    <ul>
+                        <li>1917-1918: типография газеты 'Известия Череповецкого Совета'</li>
+                        <li>1930-1967: гарнизонный клуб 30-го стрелкового полка</li>
+                        <li>1967-1990-е: городской военкомат</li>
+                        <li>С 1998: фирма 'Энтиком'</li>
+                    </ul>
+                `
+            },
+            7: {
+                title: "Торговый дом Плотникова и Катаникова (дом №35а)",
+                year: "1912-1913",
+                fullDescription: `
+                    <p><strong>Дом №35а</strong> — один из самых интересных торговых домов проспекта.</p>
+                    <h4>Закладка фундамента:</h4>
+                    <p>В фундамент заложены четыре кирпича в форме креста и серебряные монеты. Заложил сын И.А. Милютина — <strong>Андрей Иванович</strong>, избранный городским головой.</p>
+                    <h4>Торговый дом:</h4>
+                    <p>20 октября 1913 открыт 'Торговый дом М. Плотников и Д. Катаников'. Торговали: чаем, кофе, солью, красками, посудой, самоварами, мебелью, иконами.</p>
+                    <h4>Библиотека:</h4>
+                    <p>Май 1914 — общественная библиотека имени А.С. Пушкина (открыта в 1900).</p>
+                    <h4>Сейчас:</h4>
+                    <p>Городское филармоническое собрание: управление культуры, филармония, хоровая капелла мальчиков, камерный хор 'Воскресение', аптека.</p>
+                `
+            },
+            8: {
+                title: "Городской театр / Камерный театр (дом №35б)",
+                year: "1915",
+                fullDescription: `
+                    <p><strong>Дом №35б</strong> — культурная жемчужина проспекта.</p>
+                    <h4>Строительство:</h4>
+                    <p>Архитектор: <strong>Фомичев</strong> (городской архитектор). Строительство финансировали известные купцы: Афанасьев, Красильников, Волков, Спасокукотский. Стоимость: 30000 рублей (частный заем).</p>
+                    <h4>Важное событие:</h4>
+                    <p>4-11 февраля 1926 — XIV Череповецкий губернский съезд Советов. С отчетным докладом выступал А.В. Луначарский.</p>
+                    <h4>Великая Отечественная война:</h4>
+                    <p>Госпиталь для раненых и эвакуированных из блокадного Ленинграда.</p>
+                    <h4>1945-1990:</h4>
+                    <p>Дворец культуры металлургов.</p>
+                    <h4>С 1990 года:</h4>
+                    <p>Передан Камерному театру.</p>
+                `
+            },
+            9: {
+                title: "'Небоскреб' и купеческий дом Волковой (дом №54)",
+                year: "1860 / 1920-е",
+                fullDescription: `
+                    <p><strong>Дом №54</strong> — уникальный архитектурный комплекс.</p>
+                    <h4>Владелица:</h4>
+                    <p>Принадлежал купеческой вдове <strong>Анне Ивановне Волковой</strong>.</p>
+                    <h4>Первоначальная планировка:</h4>
+                    <ul>
+                        <li>Первый этаж — торговые ряды</li>
+                        <li>Второй этаж — апартаменты Волковой</li>
+                    </ul>
+                    <h4>'Небоскреб' 1920-х:</h4>
+                    <p>Архитектор: <strong>Шапиро</strong>. Построена трехэтажная пристройка — первый 'небоскреб' в Череповце. С высшей точки был виден весь город.</p>
+                    <h4>Использование в советское время:</h4>
+                    <ul>
+                        <li>1920-е: Севзапторг, книжная лавка</li>
+                        <li>1930-е: продовольственный и промтоварный магазины</li>
+                        <li>1950-е: гостиница 'Золотой якорь', Дом учителя, школа №2</li>
+                        <li>1960-е: магазин №1 горпромторга</li>
+                    </ul>
+                    <h4>Сейчас:</h4>
+                    <p>Дом знаний (двухэтажный), магазин 'Сититайм' (трехэтажный).</p>
+                `
+            },
+            10: {
+                title: "Площадь Милютина и памятник И.А. Милютину",
+                year: "2004",
+                fullDescription: `
+                    <p><strong>Площадь Милютина</strong> — в конце Советского проспекта.</p>
+                    <h4>Историческое название:</h4>
+                    <p>До революции — Торговая площадь.</p>
+                    <h4>Иван Андреевич Милютин (1829-1907):</h4>
+                    <ul>
+                        <li>Городской голова</li>
+                        <li>Промышленник</li>
+                        <li>Просветитель</li>
+                        <li>Выходец из народа, проучившийся в школе всего один год</li>
+                        <li>Сыграл ключевую роль в развитии Череповца</li>
+                    </ul>
+                    <h4>Памятник:</h4>
+                    <p>2004 — площадь переименована в площадь Милютина. Установлен памятник работы московских скульпторов.</p>
+                    <h4>Здание №39:</h4>
+                    <p>Мариинская женская гимназия (первый этаж построен в 1871 на деньги И. Милютина). Сейчас — ресторан 'Гастрономический дом Милютин', отдел ЗАГС.</p>
+                `
+            }
+        };
+
+        // Модальное окно
+        function openModal(id) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const data = landmarksData[id];
+            
+            if (data) {
+                modalBody.innerHTML = `
+                    <h2>${data.title}</h2>
+                    <p class="modal-year">${data.year}</p>
+                    ${data.fullDescription}
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Тест
+        let currentQuestion = 1;
+        let score = 0;
+        let answered = false;
+
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                if (answered) return;
+                
+                answered = true;
+                const question = this.closest('.question');
+                const options = question.querySelectorAll('.option');
+                const explanation = question.querySelector('.explanation');
+                const nextBtn = question.querySelector('.btn-next');
+                
+                options.forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    if (opt.dataset.correct === 'true') {
+                        opt.classList.add('correct');
+                    }
+                });
+                
+                if (this.dataset.correct === 'true') {
+                    score++;
+                    this.classList.add('selected');
+                } else {
+                    this.classList.add('incorrect');
+                }
+                
+                explanation.classList.add('show');
+                nextBtn.disabled = false;
+                
+                updateProgress();
+            });
+        });
+
+        document.querySelectorAll('.btn-next').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const question = this.closest('.question');
+                question.classList.remove('active');
+                
+                if (currentQuestion < 10) {
+                    currentQuestion++;
+                    document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                    answered = false;
+                } else {
+                    showResult();
+                }
+            });
+        });
+
+        function updateProgress() {
+            const progress = (currentQuestion / 10) * 100;
+            const progressFill = document.getElementById('progressFill');
+            progressFill.style.width = progress + '%';
+            progressFill.textContent = Math.round(progress) + '%';
+            
+            const quizLevel = document.getElementById('quizLevel');
+            if (currentQuestion <= 2) {
+                quizLevel.textContent = 'Уровень: Случайный прохожий';
+            } else if (currentQuestion <= 4) {
+                quizLevel.textContent = 'Уровень: Начинающий краевед';
+            } else if (currentQuestion <= 6) {
+                quizLevel.textContent = 'Уровень: Любитель истории';
+            } else if (currentQuestion <= 8) {
+                quizLevel.textContent = 'Уровень: Знаток Череповца';
+            } else {
+                quizLevel.textContent = 'Уровень: Почетный хранитель проспекта';
+            }
+        }
+
+        function showResult() {
+            document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+            const result = document.getElementById('quizResult');
+            result.classList.add('show');
+            
+            document.getElementById('resultScore').textContent = `${score}/10`;
+            
+            let level, description;
+            if (score <= 2) {
+                level = 'Случайный прохожий';
+                description = 'Вы только начинаете знакомство с историей проспекта!';
+            } else if (score <= 4) {
+                level = 'Начинающий краевед';
+                description = 'Вы знаете некоторые факты, но многое еще предстоит узнать!';
+            } else if (score <= 6) {
+                level = 'Любитель истории';
+                description = 'Хороший результат! Вы неплохо знаете историю проспекта.';
+            } else if (score <= 8) {
+                level = 'Знаток Череповца';
+                description = 'Отлично! Вы хорошо знакомы с историей Советского проспекта.';
+            } else {
+                level = 'Почетный хранитель проспекта';
+                description = 'Превосходно! Вы настоящий эксперт по истории проспекта!';
+            }
+            
+            document.getElementById('resultLevel').textContent = level;
+            document.getElementById('resultDescription').textContent = description;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 1;
+            score = 0;
+            answered = false;
+            
+            document.querySelectorAll('.question').forEach(q => {
+                q.classList.remove('active');
+                q.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected', 'correct', 'incorrect');
+                    opt.style.pointerEvents = 'auto';
+                });
+                q.querySelector('.explanation').classList.remove('show');
+                q.querySelector('.btn-next').disabled = true;
+            });
+            
+            document.querySelector('[data-question="1"]').classList.add('active');
+            document.getElementById('quizResult').classList.remove('show');
+            updateProgress();
+        }
+
+        // Анимация появления элементов при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.timeline-item, .landmark-card').forEach(item => {
+                observer.observe(item);
+            });
+        });
+
+        // Активная ссылка в навигации
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
