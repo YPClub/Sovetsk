@@ -168,7 +168,89 @@
             padding-bottom: 15px;
         }
 
-  
+  /* ===== КОНТАКТЫ ===== */
+#contacts {
+    background: #2c3e50;
+    color: white;
+}
+
+#contacts .section-title {
+    color: white;
+}
+
+.contacts-subtitle {
+    text-align: center;
+    color: #bdc3c7;
+    font-size: 1.1em;
+    margin-top: -30px;
+    margin-bottom: 50px;
+}
+
+.contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.contact-card:hover {
+    background: #367e48;
+    border-color: #367e48;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(54, 126, 72, 0.4);
+}
+
+.contact-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.contact-label {
+    font-size: 0.9em;
+    color: #bdc3c7;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-card:hover .contact-label {
+    color: white;
+}
+
+.contact-value {
+    font-size: 1.2em;
+    font-weight: 600;
+    word-break: break-all;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #95a5a6;
+    font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+    .contacts-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
         /* ===== ИСТОРИЯ (ТАЙМЛАЙН) ===== */
         #history {
